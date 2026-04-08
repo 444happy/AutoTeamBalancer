@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 밸런서 - 정밀한 팀 나누기 도구</title>
+    <meta name="description" content="티어와 포지션을 반영한 정밀한 알고리즘으로 균형 잡힌 팀을 구성하세요.">
+    <meta name="keywords" content="팀 밸런서, 팀 나누기, 게임 팀 구성, 밸런스 조절, 모임 팀 나누기">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>팀 밸런서</h1>
+            <p>10명의 플레이어를 입력하고 팀을 균형 있게 나누세요.</p>
+            <div class="info-buttons">
+                <button id="calc-info-btn">점수 계산 방식</button>
+                <button id="tips-info-btn">팀 잘 나누는 팁</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <div class="player-inputs">
+                    <div id="player-form">
+                        <!-- 10 player rows -->
+                        <div class="player-row" data-index="1">
+                            <span>1.</span>
+                            <input type="text" placeholder="플레이어 이름" class="player-name">
+                            <select class="player-lane">
+                                <option value="TOP">TOP</option>
+                                <option value="JUG">JUG</option>
+                                <option value="MID">MID</option>
+                                <option value="ADC">ADC</option>
+                                <option value="SUP">SUP</option>
+                            </select>
+                            <select class="player-tier">
+                                <option value="0">Unranked</option>
+                                <option value="1">Iron</option>
+                                <option value="2">Bronze</option>
+                                <option value="3">Silver</option>
+                                <option value="4" selected>Gold</option>
+                                <option value="5">Platinum</option>
+                                <option value="6">Emerald</option>
+                                <option value="7">Diamond</option>
+                                <option value="8">Master</option>
+                                <option value="9">Grandmaster</option>
+                                <option value="10">Challenger</option>
+                            </select>
+                            <select class="player-division">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4" selected>4</option>
+                            </select>
+                        </div>
+                        <div class="player-row" data-index="2"><span>2.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="3"><span>3.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="4"><span>4.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="5"><span>5.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="6"><span>6.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="7"><span>7.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="8"><span>8.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="9"><span>9.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="10"><span>10.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button id="random-fill-btn">랜덤 샘플 채우기</button>
+                    <button id="balance-btn">팀 나누기</button>
+                </div>
+            </section>
+
+            <section class="result-section hidden" id="result-section">
+                <div class="teams-container">
+                    <div class="team team-blue">
+                        <h2>BLUE TEAM</h2>
+                        <div class="player-list" id="blue-team-list"></div>
+                        <div class="team-score" id="blue-team-score"></div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team team-red">
+                        <h2>RED TEAM</h2>
+                        <div class="player-list" id="red-team-list"></div>
+                        <div class="team-score" id="red-team-score"></div>
+                    </div>
+                </div>
+                <div class="result-actions">
+                    <button id="copy-btn">결과 복사하기</button>
+                </div>
+            </section>
+
+            <!-- 상세 가이드 및 SEO 콘텐츠 섹션 -->
+            <section class="guide-section">
+                <article class="guide-article">
+                    <h2>🎮 공정한 팀 구성 및 밸런스 완벽 가이드</h2>
+                    <p>여러 명의 인원이 모여 게임을 즐길 때 가장 중요한 것은 팀의 실력 균형입니다. 실력 차이가 큰 플레이어들이 모였을 때 팀을 공정하게 나누는 것은 매우 어려운 일입니다. 본 도구는 이러한 고민을 해결하기 위해 제작되었습니다.</p>
+
+                    <div class="guide-grid">
+                        <div class="guide-card">
+                            <h3>티어별 정밀 점수 시스템</h3>
+                            <p>단순히 등급으로 나누지 않고, 각 티어 내의 세부 단계까지 반영하여 정밀한 점수를 부여합니다. 예를 들어 '실버 1'은 '실버 4'보다 높은 점수로 계산되어, 팀의 전체적인 실력 균형을 더 정밀하게 맞춥니다. 마스터 이상의 상위 티어는 별도의 가중치를 적용하여 변별력을 높였습니다.</p>
+                        </div>
+                        <div class="guide-card">
+                            <h3>포지션(라인)의 중요성</h3>
+                            <p>각 게임별로 선호하는 포지션이 다를 수 있습니다. 본 서비스는 플레이어의 주 포지션 정보를 입력받아 시각적으로 표시해 줍니다. 팀을 나눈 후, 가급적 상대 팀의 맞상대와 실력 차이가 너무 크지 않도록 최종 조정하는 것이 박진감 넘치는 경기를 만드는 비결입니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-container">
+                        <h3>자주 묻는 질문 (FAQ)</h3>
+                        <div class="faq-item">
+                            <h4>Q: 팀 밸런싱 알고리즘은 어떻게 작동하나요?</h4>
+                            <p>A: 입력된 10명 플레이어의 모든 가능한 팀 조합을 전수 조사합니다. 각 조합의 총점 차이를 계산하여 그 차이가 가장 적은 '최적의 균형' 조합을 찾아냅니다.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Q: 티어를 모르는 플레이어는 어떻게 처리해야 하나요?</h4>
+                            <p>A: 정확한 기록이 없더라도 실제 예상 실력에 가까운 티어를 임의로 선택해 주세요. 정확한 데이터가 입력될수록 더 공정한 팀 구성이 가능합니다.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Q: 모바일에서도 사용 가능한가요?</h4>
+                            <p>A: 네, 본 사이트는 반응형 웹 디자인이 적용되어 스마트폰과 태블릿에서도 편리하게 이용할 수 있습니다.</p>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <!-- 제휴 문의 섹션 -->
+            <section class="contact-section">
+                <div class="contact-container">
+                    <h2>🤝 제휴 및 광고 문의</h2>
+                    <p>팀 밸런서와 함께할 파트너를 찾습니다. 문의사항을 남겨주시면 확인 후 연락드리겠습니다.</p>
+                    
+                    <form id="contact-form" action="https://formspree.io/f/xgopqada" method="POST" class="contact-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="contact-name">성함 / 단체명</label>
+                                <input type="text" id="contact-name" name="name" required placeholder="예: 홍길동">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">이메일 주소</label>
+                                <input type="email" id="contact-email" name="_replyto" required placeholder="example@email.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-type">문의 유형</label>
+                            <select id="contact-type" name="type">
+                                <option value="광고 문의">광고 문의</option>
+                                <option value="제휴 제안">제휴 제안</option>
+                                <option value="기타">기타</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">문의 내용</label>
+                            <textarea id="contact-message" name="message" required placeholder="제휴 내용이나 궁금하신 점을 상세히 적어주세요."></textarea>
+                        </div>
+                        <button type="submit" id="submit-contact" class="submit-btn">문의 메시지 보내기</button>
+                        <div id="form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>© 2024 Team Balancer. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#" id="privacy-btn">개인정보 처리방침</a>
+                    <a href="#" id="terms-btn">이용약관</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modal-body">
+                <!-- Content will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
