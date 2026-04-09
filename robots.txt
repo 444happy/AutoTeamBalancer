@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://444happy.github.io/AutoTeamBalancer/sitemap.xml
