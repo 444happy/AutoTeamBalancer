@@ -21,54 +21,158 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
+    padding-top: 80px; /* Space for fixed nav */
     line-height: 1.6;
+}
+
+/* Navigation Bar */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+}
+
+.nav-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-menu a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.nav-menu a:hover {
+    color: var(--text-main);
 }
 
 .container {
     width: 100%;
     max-width: 900px;
+    margin: 0 auto;
 }
 
 header {
     text-align: center;
     margin-bottom: 40px;
+    position: relative;
+}
+
+/* About Section */
+.about-section {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.about-section h2 {
+    color: var(--accent-color);
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.about-section p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.brand-badge {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    border: 1px solid var(--accent-color);
 }
 
 header h1 {
-    color: var(--accent-color);
-    font-size: 2.5rem;
-    font-weight: 800;
+    color: var(--text-main);
+    font-size: 3rem;
+    font-weight: 900;
     margin-bottom: 10px;
+    letter-spacing: -1px;
 }
 
-header p {
+.hero-subtitle {
     color: var(--text-muted);
-    margin-bottom: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
 }
 
-.info-buttons {
+/* 광고 슬롯 스타일 */
+.ad-placeholder {
+    background-color: var(--card-bg);
+    border: 1px dashed var(--border-color);
+    margin: 30px 0;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.info-buttons button {
-    background: var(--input-bg);
-    border: 1px solid var(--border-color);
+.top-ad {
+    height: 90px;
+    width: 100%;
+    max-width: 728px;
+    margin: 0 auto 40px auto;
+}
+
+.section-title {
+    margin-bottom: 25px;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+}
+
+.section-title h2 {
+    font-size: 1.5rem;
     color: var(--text-main);
-    padding: 6px 14px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    border-radius: 6px;
 }
 
-.info-buttons button:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+.section-title p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
 .input-section {
