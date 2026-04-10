@@ -15,6 +15,8 @@
     <meta property="og:title" content="팀 밸런서 프로 - 공정한 게임의 시작">
     <meta property="og:description" content="티어와 포지션을 반영한 정밀 알고리즘으로 완벽한 팀 밸런스를 맞추세요.">
     <meta property="og:image" content="https://444happy.github.io/AutoTeamBalancer/og-image.png">
+    <meta property="og:site_name" content="Team Balancer Pro">
+    <meta property="og:locale" content="ko_KR">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -25,25 +27,68 @@
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Team Balancer Pro",
-      "alternateName": "팀 밸런서 프로",
-      "url": "https://444happy.github.io/AutoTeamBalancer/",
-      "image": "https://444happy.github.io/AutoTeamBalancer/og-image.png",
-      "description": "플레이어의 티어와 포지션을 반영하여 5:5 팀 밸런스를 맞춰주는 정밀 알고리즘 도구입니다.",
-      "applicationCategory": "Game Tool",
-      "operatingSystem": "Web Browser",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "KRW"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Team Balancer Pro",
+        "alternateName": "팀 밸런서 프로",
+        "url": "https://444happy.github.io/AutoTeamBalancer/",
+        "image": "https://444happy.github.io/AutoTeamBalancer/og-image.png",
+        "description": "플레이어의 티어와 포지션을 반영하여 5:5 팀 밸런스를 맞춰주는 정밀 알고리즘 도구입니다.",
+        "applicationCategory": "Game Tool",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://444happy.github.io/AutoTeamBalancer/"
+        }]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "팀 밸런싱 알고리즘은 어떻게 작동하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "입력된 10명 플레이어의 모든 가능한 팀 조합을 전수 조사합니다. 각 조합의 총점 차이를 계산하여 그 차이가 가장 적은 '최적의 균형' 조합을 찾아냅니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "티어를 모르는 플레이어는 어떻게 처리해야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "정확한 기록이 없더라도 실제 예상 실력에 가까운 티어를 임의로 선택해 주세요. 정확한 데이터가 입력될수록 더 공정한 팀 구성이 가능합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "모바일에서도 사용 가능한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네, 본 사이트는 반응형 웹 디자인이 적용되어 스마트폰과 태블릿에서도 편리하게 이용할 수 있습니다."
+            }
+          }
+        ]
       }
-    }
+    ]
     </script>
 
     <link rel="canonical" href="https://444happy.github.io/AutoTeamBalancer/">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9442141313733333"
      crossorigin="anonymous"></script>
@@ -130,8 +175,8 @@
                     </div>
                 </div>
                 <div class="button-group">
-                    <button id="random-fill-btn">랜덤 샘플 채우기</button>
-                    <button id="balance-btn">팀 나누기</button>
+                    <button id="random-fill-btn" aria-label="플레이어 데이터 랜덤 샘플로 채우기">랜덤 샘플 채우기</button>
+                    <button id="balance-btn" aria-label="입력된 데이터를 바탕으로 팀 나누기 실행">팀 나누기</button>
                 </div>
             </section>
 
@@ -179,11 +224,11 @@
                         </div>
                         <div class="faq-item">
                             <h4>Q: 티어를 모르는 플레이어는 어떻게 처리해야 하나요?</h4>
-                            <p>A: 정확한 기록이 없더라도 실제 예상 실력에 가까운 티어를 임의로 선택해 주세요. 정확한 데이터가 입력될수록 더 공정한 팀 구성이 가능합니다.</p>
+                            <p>A: 정확한 기록이 없더라도 실제 예상 실력에 가까운 티어를 임의로 선택해 주세요. 정확한 데이터가 입력될수록 더 공정한 팀 구성이 가능합니다. 리그 오브 레전드의 공식 티어 기준은 <a href="https://www.leagueoflegends.com/ko-kr/news/game-updates/ranked-2024-split-1-preview/" target="_blank" rel="noopener">라이엇 게임즈 공식 홈페이지</a>에서 확인할 수 있습니다.</p>
                         </div>
                         <div class="faq-item">
                             <h4>Q: 모바일에서도 사용 가능한가요?</h4>
-                            <p>A: 네, 본 사이트는 반응형 웹 디자인이 적용되어 스마트폰과 태블릿에서도 편리하게 이용할 수 있습니다.</p>
+                            <p>A: 네, 본 사이트는 반응형 웹 디자인이 적용되어 스마트폰과 태블릿에서도 편리하게 이용할 수 있습니다. <a href="https://op.gg" target="_blank" rel="noopener">OP.GG</a>나 <a href="https://fow.kr" target="_blank" rel="noopener">FOW.KR</a> 같은 전적 검색 사이트와 함께 사용하면 더 정확한 티어 정보를 입력할 수 있습니다.</p>
                         </div>
                     </div>
                 </article>
