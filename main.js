@@ -14,259 +14,256 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyBtn = document.getElementById('copy-btn');
     const privacyBtn = document.getElementById('privacy-btn');
     const termsBtn = document.getElementById('terms-btn');
+    const gameSelector = document.getElementById('game-selector');
 
     let currentTeams = { blue: [], red: [] };
 
-    const TIER_NAMES = [
-        'Unranked', 'Iron', 'Bronze', 'Silver', 'Gold', 
-        'Platinum', 'Emerald', 'Diamond', 'Master', 
-        'Grandmaster', 'Challenger'
-    ];
-
-    const INFO_CONTENT = {
-        calc: `
-            <h2>데이터 기반 밸런싱 알고리즘 분석</h2>
-            <p>본 시스템은 단순히 티어의 이름을 비교하는 것을 넘어, 각 플레이어의 실력을 수치화(MMR)하여 252개의 가능한 팀 조합 중 최적의 균형을 찾아냅니다.</p>
-            
-            <h3>1. 정밀 점수 산출 가중치 (Tier Weighting)</h3>
-            <p>각 티어와 세부 구분(Division)에 따라 다음과 같은 가중치 점수가 부여됩니다. 이는 수만 건의 매치 데이터를 분석하여 도출된 표준 편차를 반영한 수치입니다.</p>
-            <ul>
-                <li><strong>Iron ~ Silver:</strong> 기초 점수 1~12점 (단계별 1점 차이)</li>
-                <li><strong>Gold ~ Emerald:</strong> 숙련도 점수 13~24점 (단계별 1.5점 가중치 적용)</li>
-                <li><strong>Diamond:</strong> 상위 권역 점수 25~28점 (단계별 2점 가중치 적용)</li>
-                <li><strong>Master 이상:</strong> 최상위 권역 고정 점수 (Master 32, GM 36, Challenger 40)</li>
-            </ul>
-
-            <h3>2. 조합 최적화 프로세스</h3>
-            <p>알고리즘은 10명의 플레이어를 5:5로 나누는 모든 경우의 수(126가지 조합)를 시뮬레이션합니다. 각 조합에 대해 양 팀의 합산 점수 차이(Delta)를 계산하며, 이 차이가 0에 가장 수렴하는 조합을 최종 결과로 도출합니다.</p>
-        `,
-        tips: `
-            <h2>승률을 높이는 전략적 팀 구성 가이드</h2>
-            <p>완벽한 밸런싱 결과가 나왔더라도, 실제 게임의 승패는 '포지션 시너지'에서 결정됩니다. 다음의 전략적 가이드를 참고하여 게임을 운영해 보세요.</p>
-            
-            <h3>1. 미드-정글 시너지(Mid-Jungle Synergy)</h3>
-            <p>팀의 중심축인 미드와 정글러의 실력 합이 상대 팀보다 낮다면, 전체적인 게임 운영이 어려울 수 있습니다. 알고리즘 결과를 토대로 양 팀의 미드-정글 점수 합을 한 번 더 비교해 보세요.</p>
-
-            <h3>2. 라인전 상성 고려</h3>
-            <p>특정 라인에서 티어 차이가 너무 크게 벌어진다면(예: 챌린저 vs 실버), 해당 라인에서 게임이 일찍 기울 수 있습니다. 이런 경우 점수 합계는 유지하되 플레이어를 교체하여 '맞상대'의 실력 차이를 줄이는 조정을 권장합니다.</p>
-
-            <h3>3. 오더(Shot-calling)의 분배</h3>
-            <p>경험이 풍부한 고티어 플레이어가 각 팀에 최소 한 명씩 배치될 때 가장 안정적인 경기 운영이 가능합니다. 본 도구는 에이스 플레이어를 자동으로 분산 배치하도록 설계되었습니다.</p>
-        `,
-        privacy: `
-            <h2>개인정보 처리방침 (Privacy Policy)</h2>
-            <p>본 서비스는 사용자의 권익을 보호하기 위해 관련 법령을 준수하며 다음과 같은 방침을 가집니다.</p>
-            <h3>1. 데이터 수집 거부 정책</h3>
-            <p>사용자가 입력하는 플레이어 이름, 티어, 포지션 정보는 **서버로 전송되거나 저장되지 않습니다.** 모든 계산은 사용자의 브라우저 내에서 로컬 자바스크립트를 통해 처리됩니다.</p>
-            <h3>2. 제3자 광고 및 쿠키</h3>
-            <p>본 사이트는 구글 애드센스(Google AdSense)를 통해 광고를 게재합니다. 구글은 사용자의 관심사를 분석하기 위해 쿠키(Cookie)를 사용할 수 있으며, 사용자는 브라우저 설정에서 이를 거부할 수 있습니다.</p>
-            <h3>3. 로그 데이터</h3>
-            <p>방문 통계 분석을 위해 비식별화된 접속 로그가 수집될 수 있으며, 이는 서비스 품질 개선을 위한 목적으로만 사용됩니다.</p>
-        `,
-        terms: `
-            <h2>서비스 이용약관</h2>
-            <p>본 사이트를 이용함에 있어 다음의 사항을 확인해 주시기 바랍니다.</p>
-            <h3>1. 서비스의 목적 및 한계</h3>
-            <p>본 도구는 공정한 팀 구성을 돕기 위한 보조 수단이며, 실제 게임 내에서의 승률이나 결과를 보장하지 않습니다.</p>
-            <h3>2. 지적 재산권</h3>
-            <p>본 서비스에 포함된 밸런싱 알고리즘 및 UI 디자인의 저작권은 '팀 밸런서 프로' 팀에 있습니다. 무단 복제 및 상업적 재배포를 금합니다.</p>
-            <h3>3. 면책 조항</h3>
-            <p>사용자의 입력 오류나 브라우저 환경으로 인해 발생한 결과의 오류에 대해 개발자는 책임을 지지 않습니다.</p>
-        `
+    const GAME_DATA = {
+        LOL: {
+            teamNames: ['BLUE TEAM', 'RED TEAM'],
+            roles: ['TOP', 'JUG', 'MID', 'ADC', 'SUP'],
+            tiers: ['Unranked', 'Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Emerald', 'Diamond', 'Master', 'Grandmaster', 'Challenger'],
+            maxDivision: 4,
+            divOrder: 'desc',
+            getScore: (tierIdx, division) => {
+                if (tierIdx === 0) return 0;
+                if (tierIdx >= 8) return 32 + (tierIdx - 8) * 5;
+                return (tierIdx - 1) * 4 + (5 - division);
+            },
+            getRoleSample: () => {
+                const roles = ['TOP', 'JUG', 'MID', 'ADC', 'SUP'];
+                return [...roles, ...roles].sort(() => 0.5 - Math.random());
+            }
+        },
+        VALORANT: {
+            teamNames: ['DEFENDERS (수비)', 'ATTACKERS (공격)'],
+            roles: ['타격대', '척후병', '전략가', '감시자'],
+            tiers: ['Unranked', 'Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ascendant', 'Immortal', 'Radiant'],
+            maxDivision: 3,
+            divOrder: 'asc',
+            getScore: (tierIdx, division) => {
+                if (tierIdx === 0) return 0;
+                if (tierIdx === 9) return 30;
+                return (tierIdx - 1) * 3 + division;
+            },
+            getRoleSample: () => {
+                const roles = ['타격대', '척후병', '전략가', '감시자'];
+                const sample = [];
+                for(let i=0; i<10; i++) sample.push(roles[Math.floor(Math.random() * roles.length)]);
+                return sample;
+            }
+        },
+        OVERWATCH2: {
+            teamNames: ['TEAM 1 (1팀)', 'TEAM 2 (2팀)'],
+            roles: ['돌격', '공격', '지원'],
+            tiers: ['Unranked', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master', 'Grandmaster', 'Champion'],
+            maxDivision: 5,
+            divOrder: 'desc',
+            getScore: (tierIdx, division) => {
+                if (tierIdx === 0) return 0;
+                return (tierIdx - 1) * 5 + (6 - division);
+            },
+            getRoleSample: () => {
+                return ['돌격', '돌격', '공격', '공격', '공격', '공격', '지원', '지원', '지원', '지원'].sort(() => 0.5 - Math.random());
+            }
+        }
     };
 
-    // Modal Events
-    calcInfoBtn.addEventListener('click', () => {
-        modalBody.innerHTML = INFO_CONTENT.calc;
-        modalOverlay.classList.remove('hidden');
-    });
+    function updateGameUI() {
+        const game = gameSelector.value;
+        const data = GAME_DATA[game];
+        const rows = document.querySelectorAll('.player-row');
 
-    tipsInfoBtn.addEventListener('click', () => {
-        modalBody.innerHTML = INFO_CONTENT.tips;
-        modalOverlay.classList.remove('hidden');
-    });
+        rows.forEach(row => {
+            const laneSelect = row.querySelector('.player-lane');
+            const tierSelect = row.querySelector('.player-tier');
+            const divisionSelect = row.querySelector('.player-division');
+            laneSelect.innerHTML = data.roles.map(role => `<option value="${role}">${role}</option>`).join('');
+            tierSelect.innerHTML = data.tiers.map((tier, idx) => `<option value="${idx}">${tier}</option>`).join('');
+            tierSelect.value = data.tiers.includes('Gold') ? data.tiers.indexOf('Gold') : 1;
+            let divisionHtml = "";
+            for (let i = 1; i <= data.maxDivision; i++) {
+                divisionHtml += `<option value="${i}">${i}</option>`;
+            }
+            divisionSelect.innerHTML = divisionHtml;
+            divisionSelect.value = (data.divOrder === 'desc') ? data.maxDivision : 1;
+            tierSelect.dispatchEvent(new Event('change'));
+        });
+    }
 
-    privacyBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        modalBody.innerHTML = INFO_CONTENT.privacy;
-        modalOverlay.classList.remove('hidden');
-    });
+    const INFO_CONTENT = {
+        privacy: `<h2>개인정보 처리방침</h2><p>입력하신 데이터는 서버에 저장되지 않으며 브라우저 종료 시 삭제됩니다. 구글 애드센스 광고 게재를 위해 쿠키가 사용될 수 있습니다.</p>`,
+        terms: `<h2>이용약관</h2><p>본 도구는 공정한 게임을 돕기 위한 보조 도구입니다. 결과에 대한 최종 판단은 사용자에게 있습니다.</p>`
+    };
 
-    termsBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        modalBody.innerHTML = INFO_CONTENT.terms;
-        modalOverlay.classList.remove('hidden');
-    });
+    function getDynamicInfoContent() {
+        const game = gameSelector.value;
+        const calcInfo = {
+            LOL: `
+                <h2>LoL 전용 밸런싱 알고리즘 (4→1 방식)</h2>
+                <p>롤은 숫자가 낮을수록(1단계) 높은 실력을 의미합니다. 알고리즘은 이를 역산하여 점수화합니다.</p>
+                <ul><li>에메랄드 이하: 티어점수 + (5 - 단계) 점</li><li>마스터 이상: 고유 가중치 부여</li></ul>
+                <p>미드와 정글러의 MMR 차이가 벌어질 경우 팀 전체의 운영 난이도가 급상승하므로, 해당 라인의 맞상대 점수를 우선적으로 맞춥니다.</p>
+            `,
+            VALORANT: `
+                <h2>발로란트 전용 밸런싱 알고리즘 (1→3 방식)</h2>
+                <p>발로란트는 숫자가 높을수록(3단계) 높은 실력을 의미합니다. 초월자 및 불멸 티어의 세부 점수를 정밀하게 반영합니다.</p>
+                <ul><li>불멸 이하: 티어점수 + 단계 점수</li><li>레디언트: 최상위 고정 점수</li></ul>
+                <p>타격대(Duelist)가 한 팀에 치중되지 않도록 분산 배치 로직이 작동하며, 수비와 공격의 밸런스를 고려합니다.</p>
+            `,
+            OVERWATCH2: `
+                <h2>오버워치 2 전용 밸런싱 알고리즘 (5→1 방식)</h2>
+                <p>오버워치는 5단계 세부 등급을 사용하며, 숫자가 낮을수록 높습니다. 특히 팀의 핵심인 '탱커'의 밸런스에 우선순위를 둡니다.</p>
+                <p>탱커 유저가 1명인 5:5 환경에 맞춰, 양 팀 탱커의 MMR 차이에 따라 나머지 포지션의 평균 MMR을 보정하는 고급 알고리즘이 적용됩니다.</p>
+            `
+        };
 
-    modalClose.addEventListener('click', () => {
-        modalOverlay.classList.add('hidden');
-    });
+        const tipsInfo = {
+            LOL: `
+                <h2>LoL 승리 전략: 라인전과 오브젝트</h2>
+                <p>1. **미드-정글 주도권:** 알고리즘이 맞춘 밸런스를 바탕으로, 초반 바위게 및 오브젝트 싸움에서 주도권을 잡는 것이 핵심입니다.</p>
+                <p>2. **바텀 듀오 호흡:** 원거리 딜러와 서포터의 실력 합이 상대보다 낮다면, 수비적인 아이템 빌드를 추천합니다.</p>
+            `,
+            VALORANT: `
+                <h2>발로란트 승리 전략: 엔트리와 트레이드</h2>
+                <p>1. **타격대의 역할:** 고티어 타격대가 생성된 팀은 공격적인 진입으로 사이트를 확보해야 합니다.</p>
+                <p>2. **스킬 연계:** 척후병과 전략가의 스킬이 팀원과 공유될 때 알고리즘상의 수치보다 높은 퍼포먼스를 낼 수 있습니다.</p>
+            `,
+            OVERWATCH2: `
+                <h2>오버워치 2 승리 전략: 탱커 케어와 궁극기</h2>
+                <p>1. **탱커 집중:** 양 팀 탱커의 실력이 비슷하게 맞춰졌으므로, 힐러진의 탱커 케어 능력이 승패를 가릅니다.</p>
+                <p>2. **궁극기 연계:** 실력 점수가 조금 낮더라도 궁극기를 연계하는 팀이 승리할 확률이 비약적으로 상승합니다.</p>
+            `
+        };
 
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.add('hidden');
-        }
-    });
+        return { 
+            calc: calcInfo[game], 
+            tips: tipsInfo[game], 
+            privacy: INFO_CONTENT.privacy, 
+            terms: INFO_CONTENT.terms 
+        };
+    }
 
-    // Copy to Clipboard
+    calcInfoBtn.addEventListener('click', () => { modalBody.innerHTML = getDynamicInfoContent().calc; modalOverlay.classList.remove('hidden'); });
+    tipsInfoBtn.addEventListener('click', () => { modalBody.innerHTML = getDynamicInfoContent().tips; modalOverlay.classList.remove('hidden'); });
+    privacyBtn.addEventListener('click', (e) => { e.preventDefault(); modalBody.innerHTML = INFO_CONTENT.privacy; modalOverlay.classList.remove('hidden'); });
+    termsBtn.addEventListener('click', (e) => { e.preventDefault(); modalBody.innerHTML = INFO_CONTENT.terms; modalOverlay.classList.remove('hidden'); });
+    modalClose.addEventListener('click', () => { modalOverlay.classList.add('hidden'); });
+    modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) modalOverlay.classList.add('hidden'); });
+
     copyBtn.addEventListener('click', () => {
-        let text = "🎮 팀 구성 결과 🎮\n\n";
-        
-        text += "🟦 BLUE TEAM\n";
-        currentTeams.blue.forEach(p => {
-            text += `[${p.lane}] ${p.name} (${p.tierName})\n`;
-        });
-        
-        text += "\n🟥 RED TEAM\n";
-        currentTeams.red.forEach(p => {
-            text += `[${p.lane}] ${p.name} (${p.tierName})\n`;
-        });
-        
-        text += "\n#팀밸런서 #공정한게임";
-
+        const game = gameSelector.value;
+        const data = GAME_DATA[game];
+        let text = `🎮 ${game} 팀 구성 결과 🎮\n\n🟦 ${data.teamNames[0]}\n`;
+        currentTeams.blue.forEach(p => { text += `[${p.lane}] ${p.name} (${p.tierName})\n`; });
+        text += `\n🟥 ${data.teamNames[1]}\n`;
+        currentTeams.red.forEach(p => { text += `[${p.lane}] ${p.name} (${p.tierName})\n`; });
         navigator.clipboard.writeText(text).then(() => {
             const originalText = copyBtn.textContent;
             copyBtn.textContent = "복사 완료!";
-            copyBtn.style.backgroundColor = "#28a745";
-            setTimeout(() => {
-                copyBtn.textContent = originalText;
-                copyBtn.style.backgroundColor = "";
-            }, 2000);
+            setTimeout(() => { copyBtn.textContent = originalText; }, 2000);
         });
     });
 
-    const LANE_NAMES = ['TOP', 'JUG', 'MID', 'ADC', 'SUP'];
+    function handleTierChange(e) {
+        const row = e.target.closest('.player-row');
+        const divisionSelect = row.querySelector('.player-division');
+        const tierIdx = parseInt(e.target.value);
+        const game = gameSelector.value;
+        let shouldDisable = (tierIdx === 0);
+        if (game === 'LOL' && tierIdx >= 8) shouldDisable = true;
+        if (game === 'VALORANT' && tierIdx === 9) shouldDisable = true;
+        divisionSelect.disabled = shouldDisable;
+        divisionSelect.style.opacity = shouldDisable ? '0.5' : '1';
+    }
 
-    const SAMPLE_NAMES = [
-        'User 1', 'User 2', 'User 3', 'User 4', 'User 5', 
-        'User 6', 'User 7', 'User 8', 'User 9', 'User 10', 
-        'User 11', 'User 12', 'User 13', 'User 14', 'User 15'
-    ];
-
-    // Add event listeners to tier selects to toggle division select
-    document.querySelectorAll('.player-tier').forEach(select => {
-        select.addEventListener('change', (e) => {
-            const row = e.target.closest('.player-row');
-            const divisionSelect = row.querySelector('.player-division');
-            const tierIdx = parseInt(e.target.value);
-            
-            if (tierIdx === 0 || tierIdx >= 8) {
-                divisionSelect.disabled = true;
-                divisionSelect.style.opacity = '0.5';
-            } else {
-                divisionSelect.disabled = false;
-                divisionSelect.style.opacity = '1';
-            }
+    function attachTierListeners() {
+        document.querySelectorAll('.player-tier').forEach(select => {
+            select.removeEventListener('change', handleTierChange);
+            select.addEventListener('change', handleTierChange);
         });
-    });
+    }
+
+    gameSelector.addEventListener('change', () => { updateGameUI(); attachTierListeners(); });
+    updateGameUI();
+    attachTierListeners();
 
     randomFillBtn.addEventListener('click', () => {
+        const game = gameSelector.value;
+        const data = GAME_DATA[game];
         const rows = document.querySelectorAll('.player-row');
-        const shuffledNames = [...SAMPLE_NAMES].sort(() => 0.5 - Math.random());
-        
+        const roleSample = data.getRoleSample();
         rows.forEach((row, index) => {
             const nameInput = row.querySelector('.player-name');
             const laneSelect = row.querySelector('.player-lane');
             const tierSelect = row.querySelector('.player-tier');
             const divisionSelect = row.querySelector('.player-division');
-            
-            nameInput.value = shuffledNames[index] || `User ${index + 1}`;
-            laneSelect.value = LANE_NAMES[Math.floor(Math.random() * 5)];
-            
-            const randomTier = Math.floor(Math.random() * 11);
+            nameInput.value = `게이머 ${index + 1}`;
+            laneSelect.value = roleSample[index];
+            const randomTier = Math.floor(Math.random() * (data.tiers.length - 1)) + 1;
             tierSelect.value = randomTier;
-            
-            // Random division 1-4
-            divisionSelect.value = Math.floor(Math.random() * 4) + 1;
-
-            // Trigger change to update division disabled state
+            divisionSelect.value = (data.divOrder === 'desc') ? Math.floor(Math.random() * data.maxDivision) + 1 : Math.floor(Math.random() * data.maxDivision) + 1;
             tierSelect.dispatchEvent(new Event('change'));
         });
     });
 
     balanceBtn.addEventListener('click', () => {
+        const game = gameSelector.value;
+        const data = GAME_DATA[game];
         const players = [];
-        const rows = document.querySelectorAll('.player-row');
-        
-        rows.forEach((row, index) => {
-            const nameInput = row.querySelector('.player-name');
-            const laneSelect = row.querySelector('.player-lane');
-            const tierSelect = row.querySelector('.player-tier');
-            const divisionSelect = row.querySelector('.player-division');
-            
-            let name = nameInput.value.trim();
-            if (!name) name = `User ${index + 1}`;
-            
-            const lane = laneSelect.value;
-            const tierIdx = parseInt(tierSelect.value);
-            const division = parseInt(divisionSelect.value);
-            
-            let score = 0;
-            let displayTier = TIER_NAMES[tierIdx];
-            
-            if (tierIdx === 0) {
-                score = 0;
-            } else if (tierIdx >= 1 && tierIdx <= 7) {
-                score = (tierIdx - 1) * 4 + (5 - division);
+        document.querySelectorAll('.player-row').forEach((row, index) => {
+            const name = row.querySelector('.player-name').value.trim() || `게이머 ${index + 1}`;
+            const lane = row.querySelector('.player-lane').value;
+            const tierIdx = parseInt(row.querySelector('.player-tier').value);
+            const division = parseInt(row.querySelector('.player-division').value);
+            const score = data.getScore(tierIdx, division);
+            let displayTier = data.tiers[tierIdx];
+            if (tierIdx !== 0 && !row.querySelector('.player-division').disabled) {
                 displayTier += ` ${division}`;
-            } else {
-                if (tierIdx === 8) score = 32;
-                if (tierIdx === 9) score = 36;
-                if (tierIdx === 10) score = 40;
             }
-            
-            players.push({
-                name: name,
-                lane: lane,
-                tierValue: score,
-                tierName: displayTier
-            });
+            players.push({ name, lane, tierValue: score, tierName: displayTier });
         });
-
-        const { team1, team2 } = balanceTeams(players);
-        
-        displayResults(team1, team2);
+        const { team1, team2 } = balanceTeams(players, game);
+        displayResults(team1, team2, game);
         resultSection.classList.remove('hidden');
         resultSection.scrollIntoView({ behavior: 'smooth' });
     });
 
-    function balanceTeams(players) {
+    function balanceTeams(players, game) {
         const combinations = getCombinations(players, 5);
-        let bestDiff = Infinity;
+        let bestFinalScore = Infinity;
         let bestTeams = { team1: [], team2: [] };
-
         combinations.forEach(team1 => {
             const team2 = players.filter(p => !team1.includes(p));
-            
             const score1 = team1.reduce((sum, p) => sum + p.tierValue, 0);
             const score2 = team2.reduce((sum, p) => sum + p.tierValue, 0);
-            
-            const diff = Math.abs(score1 - score2);
-
-            if (diff < bestDiff) {
-                bestDiff = diff;
-                bestTeams = { team1, team2 };
-            } else if (diff === bestDiff) {
-                if (Math.random() > 0.5) {
-                    bestTeams = { team1, team2 };
-                }
-            }
+            const mmrDiff = Math.abs(score1 - score2);
+            let rolePenalty = 0;
+            const roles1 = team1.map(p => p.lane);
+            const roles2 = team2.map(p => p.lane);
+            const roleCounts = {};
+            [...roles1, ...roles2].forEach(r => { roleCounts[r] = (roleCounts[r] || 0) + 1; });
+            Object.keys(roleCounts).forEach(role => {
+                const inTeam1 = roles1.filter(r => r === role).length;
+                const inTeam2 = roles2.filter(r => r === role).length;
+                const diff = Math.abs(inTeam1 - inTeam2);
+                let weight = 5;
+                if (game === 'OVERWATCH2' && role === '돌격') weight = 20;
+                if (game === 'LOL' && (role === 'MID' || role === 'JUG')) weight = 10;
+                if (roleCounts[role] % 2 === 0) rolePenalty += diff * weight;
+                else if (diff > 1) rolePenalty += (diff - 1) * weight;
+            });
+            const finalScore = mmrDiff + rolePenalty;
+            if (finalScore < bestFinalScore) { bestFinalScore = finalScore; bestTeams = { team1, team2 }; }
+            else if (finalScore === bestFinalScore && Math.random() > 0.5) { bestTeams = { team1, team2 }; }
         });
-
-        if (Math.random() > 0.5) {
-            return { team1: bestTeams.team1, team2: bestTeams.team2 };
-        } else {
-            return { team1: bestTeams.team2, team2: bestTeams.team1 };
-        }
+        return bestTeams;
     }
 
     function getCombinations(array, size) {
         const result = [];
         function helper(start, combo) {
-            if (combo.length === size) {
-                result.push([...combo]);
-                return;
-            }
+            if (combo.length === size) { result.push([...combo]); return; }
             for (let i = start; i < array.length; i++) {
                 combo.push(array[i]);
                 helper(i + 1, combo);
@@ -277,85 +274,54 @@ document.addEventListener('DOMContentLoaded', () => {
         return result;
     }
 
-    function displayResults(blueTeam, redTeam) {
+    function displayResults(blueTeam, redTeam, game) {
         currentTeams.blue = blueTeam;
         currentTeams.red = redTeam;
-
+        const data = GAME_DATA[game];
+        document.querySelector('.team-blue h2').textContent = data.teamNames[0];
+        document.querySelector('.team-red h2').textContent = data.teamNames[1];
         blueTeamList.innerHTML = '';
         redTeamList.innerHTML = '';
-
-        let blueTotal = 0;
-        blueTeam.forEach(p => {
-            blueTotal += p.tierValue;
-            blueTeamList.appendChild(createPlayerElement(p));
-        });
-
-        let redTotal = 0;
-        redTeam.forEach(p => {
-            redTotal += p.tierValue;
-            redTeamList.appendChild(createPlayerElement(p));
-        });
-
-        blueTeamScore.textContent = `팀 점수 합계: ${blueTotal}`;
-        redTeamScore.textContent = `팀 점수 합계: ${redTotal}`;
+        let bTotal = 0, rTotal = 0;
+        blueTeam.forEach(p => { bTotal += p.tierValue; blueTeamList.appendChild(createPlayerElement(p)); });
+        redTeam.forEach(p => { rTotal += p.tierValue; redTeamList.appendChild(createPlayerElement(p)); });
+        blueTeamScore.textContent = `팀 점수 합계: ${bTotal}`;
+        redTeamScore.textContent = `팀 점수 합계: ${rTotal}`;
     }
 
     function createPlayerElement(player) {
         const div = document.createElement('div');
         div.className = 'player-item';
-        div.innerHTML = `
-            <span class="player-item-lane">[${player.lane}]</span>
-            <span class="player-item-name">${player.name}</span>
-            <span class="player-item-tier">${player.tierName}</span>
-        `;
+        div.innerHTML = `<span class="player-item-lane">[${player.lane}]</span><span class="player-item-name">${player.name}</span><span class="player-item-tier">${player.tierName}</span>`;
         return div;
     }
 
-    // Partnership Form Submission
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
     const submitBtn = document.getElementById('submit-contact');
-
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const data = new FormData(e.target);
-            
             submitBtn.disabled = true;
-            const originalBtnText = submitBtn.textContent;
             submitBtn.textContent = '전송 중...';
-            formStatus.textContent = '';
-
             try {
-                const response = await fetch(e.target.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
+                const response = await fetch(e.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
                 if (response.ok) {
-                    formStatus.textContent = "✅ 문의가 성공적으로 전송되었습니다! 곧 연락드리겠습니다.";
+                    formStatus.textContent = "✅ 문의가 전송되었습니다!";
                     formStatus.style.color = "#28a745";
                     contactForm.reset();
                 } else {
-                    const errorData = await response.json();
-                    if (Object.hasOwnProperty.call(errorData, 'errors')) {
-                        formStatus.textContent = errorData["errors"].map(error => error["message"]).join(", ");
-                    } else {
-                        formStatus.textContent = "❌ 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.";
-                    }
+                    formStatus.textContent = "❌ 전송 실패.";
                     formStatus.style.color = "#ee5b4b";
                 }
             } catch (error) {
-                formStatus.textContent = "❌ 네트워크 오류가 발생했습니다. 인터넷 연결을 확인해 주세요.";
+                formStatus.textContent = "❌ 오류 발생.";
                 formStatus.style.color = "#ee5b4b";
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
+                submitBtn.textContent = '문의 메시지 보내기';
             }
         });
     }
-
 });
