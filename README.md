@@ -5,7 +5,7 @@
 
 ---
 
-### 🚀 [팀 밸런서 프로 바로가기 (Click)](https://444happy.github.io/AutoTeamBalancer/)
+### 🚀 [팀 밸런서 프로 바로가기 (Click)](https://autoteambalancer.pages.dev/)
 
 리그 오브 레전드(LoL), 발로란트 등 내전(Civil War)이나 팀 게임 모임에서 **가장 공정한 팀 나누기**를 도와주는 웹 서비스입니다. 
 

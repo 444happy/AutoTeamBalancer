@@ -5,4 +5,4 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
-Sitemap: https://444happy.github.io/AutoTeamBalancer/sitemap.xml
+Sitemap: https://autoteambalancer.pages.dev/sitemap.xml
