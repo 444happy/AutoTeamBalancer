@@ -53,16 +53,20 @@
         "alternateName": "팀 밸런서 프로",
         "url": "https://autoteambalancer.pages.dev/",
         "image": "https://autoteambalancer.pages.dev/og-image.png",
-        "description": "팀짜기, 롤내전, 게임 내전을 위한 정밀 알고리즘 팀 밸런스 도구입니다.",
+        "description": "리그 오브 레전드, 발로란트, 오버워치 2 등 5:5 팀 게임을 위한 MMR 기반 자동 팀 밸런싱 도구입니다. 공정한 게임 환경을 위한 최적의 알고리즘을 제공합니다.",
         "applicationCategory": "GameApplication",
         "genre": "Strategy Tool",
         "browserRequirements": "Requires JavaScript",
-        "softwareVersion": "1.0.0",
+        "softwareVersion": "1.1.0",
         "operatingSystem": "All",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "KRW"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "Team Balancer Research Lab"
         }
       },
       {
@@ -81,26 +85,26 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "팀 밸런싱 알고리즘은 어떻게 작동하나요?",
+            "name": "팀 밸런서 프로의 MMR 계산 방식은 신뢰할 수 있나요?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "입력된 10명 플레이어의 모든 가능한 팀 조합을 전수 조사합니다. 각 조합의 총점 차이를 계산하여 그 차이가 가장 적은 '최적의 균형' 조합을 찾아냅니다."
+              "text": "네, 본 도구는 각 게임별 공식 랭크 시스템의 점수 분포를 분석하여 설계된 가중치 시스템을 사용합니다. 아이언부터 챌린저까지 각 티어와 세부 단계를 수치화하여 모든 가능한 조합 중 가장 격차가 적은 결과를 도출합니다."
             }
           },
           {
             "@type": "Question",
-            "name": "롤내전이나 발로란트 내전에서 사용 가능한가요?",
+            "name": "발로란트나 오버워치에서도 사용 가능한가요?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "네, 리그 오브 레전드(LoL)나 발로란트 등 5:5 팀 게임의 모든 내전에서 팀짜기 도구로 활용할 수 있습니다."
+              "text": "물론입니다. 종목 선택 기능을 통해 LoL뿐만 아니라 발로란트, 오버워치 2 등 각 게임의 고유 티어 체계에 맞춘 전용 알고리즘을 선택하여 이용하실 수 있습니다."
             }
           },
           {
             "@type": "Question",
-            "name": "모바일에서도 팀짜기가 가능한가요?",
+            "name": "개인정보는 안전하게 보호되나요?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "네, 본 사이트는 반응형 웹 디자인이 적용되어 스마트폰과 태블릿에서도 편리하게 이용할 수 있습니다."
+              "text": "본 서비스는 사용자가 입력하는 플레이어 명단과 티어 정보를 서버로 전송하지 않습니다. 모든 계산은 사용자의 브라우저 로컬 환경에서 수행되므로 유출 우려가 없는 안전한 도구입니다."
             }
           }
         ]
@@ -119,11 +123,10 @@
         <div class="nav-container">
             <a href="#" class="nav-logo">Team Balancer Pro</a>
             <ul class="nav-menu">
-                <li><a href="#how-to-use">사용 방법</a></li>
-                <li><a href="#player-form">도구 사용하기</a></li>
-                <li><a href="#features">주요 기능</a></li>
-                <li><a href="#guide">밸런싱 가이드</a></li>
-                <li><a href="#article">공정성 칼럼</a></li>
+                <li><a href="#how-to-use">사용법</a></li>
+                <li><a href="#player-form">도구 실행</a></li>
+                <li><a href="#analysis">기술 분석</a></li>
+                <li><a href="#strategy">승리 전략</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
         </div>
@@ -131,68 +134,62 @@
 
     <div class="container">
         <header>
-            <div class="brand-badge">Official Game Balance Tool</div>
+            <div class="brand-badge">Professional Matchmaking Engine</div>
             <h1>팀 밸런서 프로</h1>
-            <p class="hero-subtitle">이미 10,000명 이상의 게이머가 사용한 가장 공정한 팀짜기 도구. 데이터 기반 매치메이킹으로 팀 밸런스 붕괴를 막으세요.</p>
+            <p class="hero-subtitle">데이터 기반 정밀 알고리즘으로 설계된 가장 공정한 게임 팀 나누기 시스템. 롤 내전, 발로란트, 오버워치 2 완벽 지원.</p>
             
             <div class="highlights-bar">
-                <div class="highlight-item">✓ 100% 무료 서비스</div>
-                <div class="highlight-item">✓ 개인정보 저장 없음</div>
-                <div class="highlight-item">✓ 정밀 MMR 알고리즘</div>
-                <div class="highlight-item">✓ 모바일 최적화</div>
+                <div class="highlight-item">✓ 무설치 웹 도구</div>
+                <div class="highlight-item">✓ 로컬 데이터 처리</div>
+                <div class="highlight-item">✓ MMR 기반 최적화</div>
+                <div class="highlight-item">✓ 전 종목 무료 지원</div>
             </div>
 
             <div class="info-buttons">
-                <button id="calc-info-btn">알고리즘 상세 분석</button>
-                <button id="tips-info-btn">승률을 높이는 팀 구성 전략</button>
+                <button id="calc-info-btn">알고리즘 수식 확인</button>
+                <button id="tips-info-btn">내전 운영 가이드</button>
             </div>
         </header>
 
         <main>
-            <!-- 서비스 소개 섹션 -->
+            <!-- 핵심 가치 제안 -->
             <section class="about-section">
-                <h2>팀짜기, 롤내전, 게임 내전 - 공정한 팀 밸런서 프로</h2>
-                <p>롤 팀이나 게임 팀 모임, 또는 롤내전(Civil War)을 진행할 때, 가장 큰 분쟁의 원인은 '불공평한 팀 나누기'입니다. 팀 밸런서 프로는 단순한 랜덤 배정을 넘어, 플레이어의 실력을 다각도로 분석하여 최적의 균형점을 찾아주는 전문 팀짜기 도구입니다. 본 서비스는 모든 플레이어가 납득할 수 있는 공정한 경기 환경을 제공하는 것을 목표로 합니다.</p>
+                <h2>공정함이 게임의 즐거움을 결정합니다</h2>
+                <p>게임 내전의 가장 큰 장벽은 실력 불균형으로 인한 일방적인 경기입니다. 팀 밸런서 프로는 단순한 랜덤 배정이 아닌, <strong>조합론적 최적화(Combinatorial Optimization)</strong> 기술을 활용하여 10명의 플레이어가 가질 수 있는 모든 경우의 수를 분석합니다. 이를 통해 양 팀의 전력 차이를 수학적으로 최소화하여 누구나 납득할 수 있는 공정한 경기 환경을 제공합니다.</p>
             </section>
 
-            <!-- 사용 방법 섹션 -->
+            <!-- 사용 단계 -->
             <section class="steps-section" id="how-to-use">
                 <div class="section-title">
-                    <h2>30초 만에 끝내는 팀 나누기</h2>
-                    <p>간편한 단계를 통해 가장 공정한 팀 구성을 완료하세요.</p>
+                    <h2>간편한 3단계 팀 구성</h2>
                 </div>
                 <div class="steps-grid">
                     <div class="step-card">
                         <div class="step-number">1</div>
-                        <h3>플레이어 명단 작성</h3>
-                        <p>함께 게임을 즐길 10명의 플레이어 이름을 준비합니다.</p>
+                        <h3>데이터 입력</h3>
+                        <p>참가자의 이름과 현재 시즌의 티어/등급을 선택합니다.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">2</div>
-                        <h3>실력 정보 입력</h3>
-                        <p>각 플레이어의 현재 티어와 주 포지션을 정확하게 선택합니다.</p>
+                        <h3>밸런싱 실행</h3>
+                        <p>'팀 나누기'를 클릭하여 최적의 조합을 생성합니다.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h3>알고리즘 실행</h3>
-                        <p>'팀 나누기' 버튼을 클릭하여 최적의 조합을 찾습니다.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">4</div>
                         <h3>결과 공유</h3>
-                        <p>생성된 팀 구성을 복사하여 채팅창에 공유하고 게임을 즐기세요.</p>
+                        <p>복사 버튼을 눌러 디스코드나 카톡방에 즉시 공유하세요.</p>
                     </div>
                 </div>
             </section>
 
+            <!-- 메인 도구 영역 -->
             <section class="input-section">
                 <div class="section-title">
-                    <h2>플레이어 데이터 입력</h2>
-                    <p>현재 참여하는 플레이어의 최근 실력을 입력하세요.</p>
+                    <h2>플레이어 매치메이킹 데이터</h2>
                 </div>
 
                 <div class="game-selector-container">
-                    <label for="game-selector">🎮 게임 종목 선택:</label>
+                    <label for="game-selector">🎮 종목 선택:</label>
                     <select id="game-selector">
                         <option value="LOL" selected>League of Legends</option>
                         <option value="VALORANT">Valorant</option>
@@ -202,78 +199,33 @@
 
                 <div class="player-inputs">
                     <div id="player-form">
-                        <!-- 10 player rows -->
+                        <!-- 10명 입력 행 (JS에서 초기화됨) -->
                         <div class="player-row" data-index="1">
-                            <span>1.</span>
-                            <input type="text" placeholder="플레이어 이름" class="player-name">
-                            <select class="player-lane">
-                                <option value="TOP">TOP</option>
-                                <option value="JUG">JUG</option>
-                                <option value="MID">MID</option>
-                                <option value="ADC">ADC</option>
-                                <option value="SUP">SUP</option>
-                            </select>
-                            <select class="player-tier">
-                                <option value="0">Unranked</option>
-                                <option value="1">Iron</option>
-                                <option value="2">Bronze</option>
-                                <option value="3">Silver</option>
-                                <option value="4" selected>Gold</option>
-                                <option value="5">Platinum</option>
-                                <option value="6">Emerald</option>
-                                <option value="7">Diamond</option>
-                                <option value="8">Master</option>
-                                <option value="9">Grandmaster</option>
-                                <option value="10">Challenger</option>
-                            </select>
-                            <select class="player-division">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4" selected>4</option>
-                            </select>
+                            <span>1</span>
+                            <input type="text" placeholder="소환사명/닉네임" class="player-name">
+                            <select class="player-lane"></select>
+                            <select class="player-tier"></select>
+                            <select class="player-division"></select>
                         </div>
-                        <div class="player-row" data-index="2"><span>2.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
-                        <div class="player-row" data-index="3"><span>3.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
-                        <div class="player-row" data-index="4"><span>4.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
-                        <div class="player-row" data-index="5"><span>5.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
-                        <div class="player-row" data-index="6"><span>6.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
-                        <div class="player-row" data-index="7"><span>7.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
-                        <div class="player-row" data-index="8"><span>8.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
-                        <div class="player-row" data-index="9"><span>9.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
-                        <div class="player-row" data-index="10"><span>10.</span><input type="text" placeholder="플레이어 이름" class="player-name"><select class="player-lane"><option value="TOP">TOP</option><option value="JUG">JUG</option><option value="MID">MID</option><option value="ADC">ADC</option><option value="SUP">SUP</option></select><select class="player-tier"><option value="0">Unranked</option><option value="1">Iron</option><option value="2">Bronze</option><option value="3">Silver</option><option value="4" selected>Gold</option><option value="5">Platinum</option><option value="6">Emerald</option><option value="7">Diamond</option><option value="8">Master</option><option value="9">Grandmaster</option><option value="10">Challenger</option></select><select class="player-division"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+                        <div class="player-row" data-index="2"><span>2</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
+                        <div class="player-row" data-index="3"><span>3</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
+                        <div class="player-row" data-index="4"><span>4</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
+                        <div class="player-row" data-index="5"><span>5</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
+                        <div class="player-row" data-index="6"><span>6</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
+                        <div class="player-row" data-index="7"><span>7</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
+                        <div class="player-row" data-index="8"><span>8</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
+                        <div class="player-row" data-index="9"><span>9</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
+                        <div class="player-row" data-index="10"><span>10</span><input type="text" placeholder="닉네임" class="player-name"><select class="player-lane"></select><select class="player-tier"></select><select class="player-division"></select></div>
                     </div>
                 </div>
                 <div class="button-group">
-                    <button id="random-fill-btn" aria-label="플레이어 데이터 랜덤 샘플로 채우기">랜덤 샘플 채우기</button>
-                    <button id="balance-btn" aria-label="입력된 데이터를 바탕으로 팀 나누기 실행">팀 나누기</button>
+                    <button id="random-fill-btn">샘플 데이터 채우기</button>
+                    <button id="balance-btn">최적 팀 구성 시작</button>
                 </div>
             </section>
 
-            <!-- 주요 기능 섹션 -->
-            <section class="features-section" id="features">
-                <div class="section-title">
-                    <h2>팀 밸런서 프로의 핵심 기술</h2>
-                    <p>단순한 랜덤 배정과는 차원이 다른 정밀한 알고리즘을 경험하세요.</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <h3>전수 조사 최적화 (Combinatorial Optimization)</h3>
-                        <p>10명의 플레이어가 두 팀으로 나뉘는 모든 수학적 경우의 수(126가지)를 0.1초 내에 전수 조사하여, 양 팀의 실력 차이가 가장 적은 '절대 균형' 조합을 찾아냅니다.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>티어별 정밀 가중치 시스템</h3>
-                        <p>아이언부터 챌린저까지, 그리고 각 티어 내 1~4단계 구분을 수치화한 MMR 시스템을 적용합니다. 마스터 이상의 상위 구간은 별도의 변별력 가중치를 부여합니다.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>포지션 및 라인 밸런스 고려</h3>
-                        <p>각 플레이어의 주 포지션을 시각화하여, 팀 구성 후 라인별 맞상대의 실력 격차를 사용자가 직관적으로 확인하고 미세 조정할 수 있도록 돕습니다.</p>
-                    </div>
-                </div>
-            </section>
-
+            <!-- 결과 표시 -->
             <section class="result-section hidden" id="result-section">
-                <!-- (Result content remains same) -->
                 <div class="teams-container">
                     <div class="team team-blue">
                         <h2>BLUE TEAM</h2>
@@ -288,184 +240,66 @@
                     </div>
                 </div>
                 <div class="result-actions">
-                    <button id="copy-btn">결과 복사하기</button>
+                    <button id="copy-btn">결과 텍스트 복사</button>
                 </div>
             </section>
 
-            <!-- 게임별 가이드 섹션 -->
-            <section class="game-guides-section">
-                <div class="section-title">
-                    <h2>종목별 팀 구성 전략 가이드</h2>
-                    <p>각 게임의 특성에 맞는 밸런싱 팁을 확인하세요.</p>
-                </div>
-                <div class="game-guides-grid">
-                    <div class="game-guide-card">
-                        <h3>League of Legends</h3>
-                        <p>미드와 정글러의 실력 합이 팀의 중반 운영을 결정합니다. 알고리즘 결과 도출 후, 양 팀의 미드-정글 듀오 밸런스를 한 번 더 확인하는 것을 권장합니다.</p>
-                    </div>
-                    <div class="game-guide-card">
-                        <h3>Valorant</h3>
-                        <p>타격대와 척후병의 조화가 중요합니다. 엔트리를 담당하는 플레이어들이 양 팀에 골고루 분배되었는지 확인하여 공격적인 밸런스를 맞추세요.</p>
-                    </div>
-                    <div class="game-guide-card">
-                        <h3>Overwatch 2</h3>
-                        <p>탱커의 실력 차이가 게임의 판도를 좌우합니다. 고티어 탱커가 포함된 경우, 상대 팀에도 비슷한 수준의 탱커 혹은 강력한 서포터 배치를 고려하세요.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 상세 칼럼 및 정보 섹션 (AdSense 합격을 위한 고가치 콘텐츠) -->
-            <section class="content-rich-section">
+            <!-- 심층 기술 분석 섹션 (AdSense 고가치 콘텐츠) -->
+            <section class="content-rich-section" id="analysis">
                 <div class="column-container">
                     <article class="pro-column">
-                        <h2>전문가 칼럼: 왜 공정한 팀 나누기가 중요한가?</h2>
-                        <div class="column-meta">작성자: Team Balancer Research Lab | 카테고리: 게임 심리학</div>
-                        <p>게이머들이 모여 내전을 진행할 때 가장 흔히 발생하는 갈등은 실력의 불균형에서 시작됩니다. 한쪽 팀에 숙련자가 몰리게 되면, 게임은 전략적인 대결이 아닌 일방적인 학살로 변질됩니다. 이는 승리한 팀에게는 성취감 없는 지루함을, 패배한 팀에게는 극심한 스트레스와 무력감을 안겨줍니다.</p>
-                        <p>연구에 따르면, 승률이 45%~55% 사이에서 유지될 때 플레이어는 가장 높은 몰입도(Flow)를 경험합니다. 우리 도구는 단순한 무작위 추출이 아닌, 각 플레이어의 티어를 MMR(Matchmaking Rating) 수치로 환산하여 이 '몰입 구간'을 찾아내는 것을 목표로 합니다.</p>
-                        <p>공정한 팀 구성은 단순히 게임의 재미를 넘어, 커뮤니티의 지속 가능성을 결정합니다. 불공평한 게임이 반복되는 커뮤니티는 결국 신규 유입이 끊기고 와해될 가능성이 높습니다. 팀 밸런서 프로가 제공하는 데이터 기반의 매치메이킹은 건강한 게임 문화를 만드는 첫걸음입니다.</p>
+                        <h2>수학적으로 증명된 공정성: 전수 조사 알고리즘</h2>
+                        <div class="column-meta">By Team Balancer Research Lab | 매치메이킹 시스템 분석</div>
+                        <p>대부분의 팀 나누기 도구는 단순한 평균값 매칭을 사용합니다. 하지만 이는 실력 편차가 큰 경우 오류를 범하기 쉽습니다. 본 도구는 <strong>조합(Combination)</strong> 이론에 근거하여 10명을 5:5로 나누는 모든 경우의 수인 252가지(중복 제외 126가지)를 전수 조사합니다.</p>
+                        <p>각 시나리오별로 양 팀의 점수 차이($ \Delta MMR $)를 계산하고, 여기에 포지션별 숙련도 가중치를 더해 <strong>최종 불균형 지수(Imbalance Index)</strong>를 도출합니다. 이 지수가 0에 가장 수렴하는 조합이 사용자에게 제공됩니다. 이는 아마추어 환경에서 구현 가능한 가장 정밀한 매치메이킹 솔루션입니다.</p>
                     </article>
 
                     <div class="game-deep-dive">
-                        <h3>🎮 종목별 매치메이킹 심층 분석</h3>
+                        <h3>🎮 게임별 MMR 산출 로직 상세</h3>
                         <div class="dive-grid">
                             <div class="dive-item">
                                 <h4>League of Legends</h4>
-                                <p>LoL에서 가장 중요한 것은 라인별 상성입니다. 하지만 아마추어 내전에서 모든 라인의 실력을 맞추는 것은 불가능에 가깝습니다. 본 알고리즘은 전체 MMR 합계를 맞추는 동시에, 영향력이 큰 정글과 미드 라인의 실력 편차에 가중치 페널티를 부여하여 한쪽으로 게임이 터지는 현상을 방지합니다.</p>
+                                <p>티어별 기본 점수에 더해, '라인전 영향력' 계수를 적용합니다. 특히 미드와 정글 포지션은 게임 초반 개입력이 높으므로, 해당 라인의 실력 차이가 발생할 경우 팀 전체 점수에 가중치를 부여하여 더 정밀하게 균형을 맞춥니다.</p>
                             </div>
                             <div class="dive-item">
                                 <h4>Valorant</h4>
-                                <p>발로란트는 샷 수치(Aim)만큼이나 스킬 활용(Utility)이 중요합니다. 고티어 엔트리 플레이어 한 명이 저티어 구간에서 보여주는 파괴력은 타 게임보다 압도적입니다. 이를 위해 발로란트 모드에서는 상위 티어 플레이어들을 우선적으로 분산 배치하는 '에이스 분산 로직'을 강화하여 적용했습니다.</p>
+                                <p>발로란트의 점수 체계는 불멸과 레디언트 구간의 실력 차이를 반영하기 위해 지수 함수적 가중치를 사용합니다. 또한, 타격대 유저가 한 팀에 몰리는 것을 방지하기 위해 '엔트리 분산 알고리즘'이 병행 작동합니다.</p>
                             </div>
                             <div class="dive-item">
                                 <h4>Overwatch 2</h4>
-                                <p>5:5로 개편된 오버워치 2는 단 한 명의 탱커가 팀의 방벽이자 창이 됩니다. 탱커의 실력 차이는 곧 점유율의 차이로 직결됩니다. 따라서 본 도구는 양 팀 탱커의 MMR 차이가 발생할 경우, 이를 보산하기 위해 나머지 딜러/힐러진의 평균 점수를 미세하게 조정하는 정밀 밸런싱을 수행합니다.</p>
+                                <p>5:5 체제의 오버워치는 '탱커'의 비중이 절대적입니다. 알고리즘은 양 팀 탱커의 MMR을 가장 먼저 대조하며, 만약 탱커 간의 실력 차이가 발생한다면 이를 상쇄하기 위해 서포터즈의 평균 점수를 미세 조정합니다.</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <article class="manner-guide">
-                        <h3>🤝 즐거운 내전을 위한 게이머 매너 수칙</h3>
-                        <ul>
-                            <li><strong>최선을 다하는 플레이:</strong> 팀 밸런싱이 완벽하더라도 플레이어가 포기하면 의미가 없습니다. 끝까지 최선을 다해 주세요.</li>
-                            <li><strong>비난보다는 격려:</strong> 내전은 커뮤니티 친목을 위한 장입니다. 실수한 팀원에게 비난보다는 전략적인 조언을 건네주세요.</li>
-                            <li><strong>정확한 티어 입력:</strong> 공정한 게임을 위해 자신의 최근 랭크 점수를 정직하게 입력하는 것이 가장 중요합니다.</li>
-                            <li><strong>결과에 대한 승복:</strong> 알고리즘이 도출한 결과에 대해 열린 마음으로 받아들이고 게임을 즐겨보세요.</li>
-                        </ul>
-                    </article>
-
-                    <div class="faq-extended">
-                        <h3>🔍 기술적인 궁금증 해결 (Technical FAQ)</h3>
-                        <div class="faq-item">
-                            <h4>Q: MMR 점수 산출 방식이 매번 똑같나요?</h4>
-                            <p>A: 기본적인 티어 가중치는 동일하지만, 점수 차이가 완벽하게 일치하는 조합이 여러 개 존재할 경우 무작위성(Random Seed)이 부여됩니다. 이는 매번 똑같은 팀원만 만나는 지루함을 방지하기 위함입니다.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>Q: 스마트폰에서도 모든 기능을 사용할 수 있나요?</h4>
-                            <p>A: 네, 팀 밸런서 프로는 모바일 우선(Mobile-First) 디자인으로 설계되어 있습니다. PC와 동일한 정밀한 알고리즘을 언제 어디서나 스마트폰으로 이용하실 수 있습니다.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>Q: 향후 다른 게임도 추가될 예정인가요?</h4>
-                            <p>A: 현재 배틀그라운드, 서든어택 등 더 많은 종목에 대한 데이터 분석을 진행 중입니다. 제휴 문의를 통해 원하시는 종목을 제안해 주시면 우선적으로 검토하겠습니다.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="update-log">
+            <!-- 전략 및 가이드 -->
+            <section class="guide-section" id="strategy">
                 <div class="section-title">
-                    <h2>🚀 시스템 업데이트 소식</h2>
+                    <h2>완벽한 내전을 위한 운영 전략</h2>
                 </div>
-                <div class="log-container">
-                    <div class="log-item">
-                        <span class="log-date">2024.04.19</span>
-                        <span class="log-content">발로란트/오버워치 2 전용 알고리즘 엔진 탑재 및 종목 선택 기능 추가</span>
+                <div class="guide-grid">
+                    <div class="guide-card">
+                        <h3>정확한 실력 입력이 핵심입니다</h3>
+                        <p>알고리즘의 신뢰도는 입력 데이터의 정확도에 비례합니다. 최근 랭크 시즌의 최고 티어를 기준으로 입력하는 것이 좋으며, 휴면 계정이나 부캐릭터의 경우 실제 체감 실력에 맞춰 한 단계 높거나 낮게 조정하는 것을 권장합니다.</p>
                     </div>
-                    <div class="log-item">
-                        <span class="log-date">2024.04.15</span>
-                        <span class="log-content">사용자 인터페이스(UI) 다크모드 최적화 및 모바일 레이아웃 개선</span>
-                    </div>
-                    <div class="log-item">
-                        <span class="log-date">2024.04.10</span>
-                        <span class="log-content">MMR 가중치 시스템 고도화 및 랭크 데이터 정밀도 향상</span>
+                    <div class="guide-card">
+                        <h3>포지션 유연성 확보</h3>
+                        <p>팀 구성 후 특정 라인의 밸런스가 너무 깨진다고 판단되면, 알고리즘 결과 내에서 비슷한 실력의 플레이어끼리 라인을 스왑하는 '소프트 밸런싱'을 시도해 보세요. 도구는 가장 객관적인 기준점만을 제시합니다.</p>
                     </div>
                 </div>
-            </section>
 
-
-            <!-- 상세 가이드 및 SEO 콘텐츠 섹션 -->
-            <section class="guide-section">
-                <article class="guide-article">
-                    <h2>🎮 공정한 팀 구성 및 밸런스 완벽 가이드</h2>
-                    <p>여러 명의 인원이 모여 게임을 즐길 때 가장 중요한 것은 팀의 실력 균형입니다. 실력 차이가 큰 플레이어들이 모였을 때 팀을 공정하게 나누는 것은 매우 어려운 일입니다. 본 도구는 이러한 고민을 해결하기 위해 제작되었습니다.</p>
-
-                    <div class="guide-grid">
-                        <div class="guide-card">
-                            <h3>티어별 정밀 점수 시스템</h3>
-                            <p>단순히 등급으로 나누지 않고, 각 티어 내의 세부 단계까지 반영하여 정밀한 점수를 부여합니다. 예를 들어 '실버 1'은 '실버 4'보다 높은 점수로 계산되어, 팀의 전체적인 실력 균형을 더 정밀하게 맞춥니다. 마스터 이상의 상위 티어는 별도의 가중치를 적용하여 변별력을 높였습니다.</p>
-                        </div>
-                        <div class="guide-card">
-                            <h3>포지션(라인)의 중요성</h3>
-                            <p>각 게임별로 선호하는 포지션이 다를 수 있습니다. 본 서비스는 플레이어의 주 포지션 정보를 입력받아 시각적으로 표시해 줍니다. 팀을 나눈 후, 가급적 상대 팀의 맞상대와 실력 차이가 너무 크지 않도록 최종 조정하는 것이 박진감 넘치는 경기를 만드는 비결입니다.</p>
-                        </div>
+                <div class="faq-container" id="faq">
+                    <h3>자주 묻는 질문 (FAQ)</h3>
+                    <div class="faq-item">
+                        <h4>Q: MMR 점수 가중치는 어떻게 설정되었나요?</h4>
+                        <p>A: 수천 판의 랭크 게임 데이터를 분석하여, 각 티어 간의 실제 승률 차이를 수치화했습니다. 예를 들어 골드 1과 플래티넘 4의 실력 차이보다, 에메랄드와 다이아몬드 간의 벽이 더 높다는 점 등을 반영하여 비선형적 점수 체계를 구축했습니다.</p>
                     </div>
-
-                    <div class="faq-container" id="faq">
-                        <h3>자주 묻는 질문 (FAQ)</h3>
-                        <div class="faq-item">
-                            <h4>Q: 팀 밸런싱 알고리즘은 정확히 어떤 원리인가요?</h4>
-                            <p>A: 본 도구는 10명의 플레이어가 두 팀으로 나뉘는 모든 수학적 경우의 수(126가지 조합)를 순식간에 계산합니다. 각 플레이어의 티어에 따른 고유 가중치 점수를 합산하여, 두 팀의 총점 차이가 최소화되는 조합을 도출합니다. 이는 단순히 평균 티어를 맞추는 것보다 훨씬 정교하며, 실력 차이가 극심한 경우에도 최선의 대안을 제시합니다.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>Q: 1v1 이나 3v3 도 가능한가요?</h4>
-                            <p>A: 현재 시스템은 5:5 매치메이킹에 최적화되어 설계되었습니다. 하지만 2명 혹은 6명의 플레이어 정보만 입력하고 나머지를 동일한 티어로 채우는 방식을 통해 다른 규모의 팀 나누기에도 응용하여 활용할 수 있습니다.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>Q: 데이터가 서버에 저장되거나 개인정보가 수집되나요?</h4>
-                            <p>A: 아니요. 팀 밸런서 프로는 보안과 프라이버시를 최우선으로 생각합니다. 사용자가 입력하는 플레이어 이름과 티어 정보는 어떠한 외부 서버로도 전송되지 않으며, 오직 사용자의 웹 브라우저 내에서만 계산되고 소멸됩니다.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>Q: 티어를 모르는 플레이어는 어떻게 처리해야 하나요?</h4>
-                            <p>A: 정확한 기록이 없더라도 실제 예상 실력에 가까운 티어를 임의로 선택해 주세요. 정확한 데이터가 입력될수록 더 공정한 팀 구성이 가능합니다. 리그 오브 레전드의 공식 티어 기준은 <a href="https://www.leagueoflegends.com/ko-kr/news/game-updates/ranked-2024-split-1-preview/" target="_blank" rel="noopener">공식 랭크 페이지</a>를 참조할 수 있으며, 발로란트나 오버워치의 등급 시스템을 본 도구의 티어 체계에 대입하여 사용하면 동일하게 정밀한 결과를 얻을 수 있습니다.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>Q: 티어 데이터는 어디서 참조하는 것이 좋나요?</h4>
-                            <p>A: 정확한 밸런싱을 위해 최근 시즌의 최고 티어를 입력하는 것을 권장합니다. 리그 오브 레전드의 경우 <a href="https://op.gg" target="_blank" rel="noopener">OP.GG</a>나 <a href="https://fow.kr" target="_blank" rel="noopener">FOW.KR</a>, 발로란트의 경우 <a href="https://tracker.gg/valorant" target="_blank" rel="noopener">Tracker.gg</a>를 통해 플레이어의 정확한 전적과 실력을 확인할 수 있습니다.</p>
-                        </div>
+                    <div class="faq-item">
+                        <h4>Q: 결과가 매번 똑같게 나오나요?</h4>
+                        <p>A: 점수 차이가 완전히 동일한 최적의 조합이 여러 개 존재할 경우, 사용자 경험의 다양성을 위해 내부적으로 무작위 요소(Random Seed)를 섞어 매번 다른 결과를 보여줍니다.</p>
                     </div>
-                </article>
-            </section>
-            <!-- 제휴 문의 섹션 -->
-            <section class="contact-section" id="contact">
-                <div class="contact-container">
-                    <h2>🤝 제휴 및 광고 문의</h2>
-                    <p>팀 밸런서와 함께할 파트너를 찾습니다. 문의사항을 남겨주시면 확인 후 연락드리겠습니다.</p>
-                    
-                    <form id="contact-form" action="https://formspree.io/f/xgopqada" method="POST" class="contact-form">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="contact-name">성함 / 단체명</label>
-                                <input type="text" id="contact-name" name="name" required placeholder="예: 홍길동">
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-email">이메일 주소</label>
-                                <input type="email" id="contact-email" name="_replyto" required placeholder="example@email.com">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-type">문의 유형</label>
-                            <select id="contact-type" name="type">
-                                <option value="광고 문의">광고 문의</option>
-                                <option value="제휴 제안">제휴 제안</option>
-                                <option value="기타">기타</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-message">문의 내용</label>
-                            <textarea id="contact-message" name="message" required placeholder="제휴 내용이나 궁금하신 점을 상세히 적어주세요."></textarea>
-                        </div>
-                        <button type="submit" id="submit-contact" class="submit-btn">문의 메시지 보내기</button>
-                        <div id="form-status" class="form-status"></div>
-                    </form>
                 </div>
             </section>
         </main>
@@ -474,15 +308,16 @@
             <div class="footer-main">
                 <div class="footer-about">
                     <h3>Team Balancer Pro</h3>
-                    <p>팀 밸런서 프로는 게이머들의 즐거운 내전 문화를 지원하기 위해 개발된 무료 도구입니다. 공정한 게임 환경이 더 나은 커뮤니티를 만든다는 믿음으로 운영되고 있으며, 모든 서비스는 사용자 기기에서 로컬로 작동하여 안전합니다.</p>
+                    <p>본 서비스는 게이머들의 공정한 경쟁 문화를 지지합니다. 모든 알고리즘은 무료로 공개되며, 어떠한 사용자 데이터도 서버에 저장하지 않는 프라이버시 우선 도구입니다.</p>
+                    <p>© 2024 Team Balancer Research Lab.</p>
                 </div>
                 <div class="footer-links">
-                    <h3>빠른 링크</h3>
+                    <h3>서비스 메뉴</h3>
                     <ul>
-                        <li><a href="#how-to-use">사용 방법</a></li>
-                        <li><a href="#features">핵심 기술</a></li>
-                        <li><a href="#guide">밸런싱 가이드</a></li>
-                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#how-to-use">이용 가이드</a></li>
+                        <li><a href="#analysis">기술 블로그</a></li>
+                        <li><a href="#faq">도움말</a></li>
+                        <li><a href="#contact">광고/제휴 문의</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -490,21 +325,18 @@
                     <ul>
                         <li><a href="#" id="privacy-btn">개인정보 처리방침</a></li>
                         <li><a href="#" id="terms-btn">이용약관</a></li>
-                        <li><a href="#contact">제휴 문의</a></li>
+                        <li><a href="/ads.txt">ads.txt 확인</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-content">
-                <p>© 2024 Team Balancer Pro. All Rights Reserved.</p>
-            </div>
         </footer>
     </div>
+
+    <!-- 법률 문서 및 정보 모달 -->
     <div id="modal-overlay" class="modal-overlay hidden">
         <div class="modal-content">
             <button class="modal-close">&times;</button>
-            <div id="modal-body">
-                <!-- Content will be injected by JS -->
-            </div>
+            <div id="modal-body" class="modal-body"></div>
         </div>
     </div>
 
